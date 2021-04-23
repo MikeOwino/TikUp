@@ -4,7 +4,7 @@ TikUp
 An auto downloader and uploader for TikTok profiles.
 
 **Requirements**  
-[TikTok-Api](https://github.com/davidteather/TikTok-Api) and [internetarchive](https://archive.org/services/docs/api/internetarchive/index.html) on Python 3.
+[TikTok-Api](https://github.com/davidteather/TikTok-Api), [internetarchive](https://archive.org/services/docs/api/internetarchive/index.html), and [youtube-dl](https://github.com/ytdl-org/youtube-dl) on Python 3.
 
 **How to Install**  
 Install with `pip install tikup`.

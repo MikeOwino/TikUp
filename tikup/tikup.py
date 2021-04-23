@@ -8,16 +8,17 @@ import random
 import youtube_dl
 from internetarchive import get_item, upload
 from TikTokApi import TikTokApi
-
+#Make sure to change to 'from .argparser import parse_args' when uploading
 from .argparser import parse_args
 
 
+api = TikTokApi()
+
 def getVersion():
-    return '2020.10.28'
+    return '2021.03.13'
 
 
 def getUsernameVideos(username, limit):
-    api = TikTokApi()
     if limit is not None:
         count = int(limit)
     else:
@@ -27,7 +28,6 @@ def getUsernameVideos(username, limit):
 
 
 def getHashtagVideos(hashtag, limit):
-    api = TikTokApi()
     if limit is not None:
         count = int(limit)
     else:
@@ -37,14 +37,12 @@ def getHashtagVideos(hashtag, limit):
 
 
 def getLikedVideos(username, limit):
-    api = TikTokApi()
     if limit is not None:
         count = int(limit)
     else:
         count = 9999
     tiktoks = api.userLikedbyUsername(username, count=count)
     return tiktoks
-
 
 def downloadTikTok(username, tiktok, cwd, varTry, did):
     try:
@@ -75,11 +73,10 @@ def downloadTikTok(username, tiktok, cwd, varTry, did):
             # ydl.download([tiktok['itemInfo']['itemStruct']['video']['downloadAddr']])
             ydl.download(['https://www.tiktok.com/@' + username + '/video/' + tiktokID])
     else:
-        api = TikTokApi()
         mp4 = open(tiktokID + '.mp4', "wb")
         mp4.write(api.get_Video_By_DownloadURL(tiktok['itemInfo']['itemStruct']['video']['downloadAddr'], custom_did=did))
         mp4.close()
-        shutil.rmtree('tmp')
+        #shutil.rmtree('tmp')
     try:
         mp4 = open(tiktokID + '.mp4', "r", encoding="latin-1")
         # For some reason, ytdl sometimes downloads the HTML page instead of the video
@@ -198,7 +195,6 @@ def doesIdExist(lines, tiktok):
 
 
 def getUsername(tiktokId):
-    api = TikTokApi()
     thing = api.getTikTokById(tiktokId)
     try:
         return thing['itemInfo']['itemStruct']['author']['uniqueId']
@@ -207,7 +203,6 @@ def getUsername(tiktokId):
 
 
 def getTikTokObject(tiktokId, did):
-    api = TikTokApi()
     thing = api.getTikTokById(tiktokId, custom_did=did)
     return thing
 

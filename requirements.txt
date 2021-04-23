@@ -1,3 +1,4 @@
-internetarchive>=1.9.4
-TikTokApi>=3.5.9
-youtube-dl>=2020.09.20
+internetarchive>=1.9.9
+TikTokApi>=3.9.2
+youtube-dl>=2021.2.10
+playwright>=1.9.2

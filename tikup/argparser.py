@@ -1,6 +1,5 @@
 from argparse import ArgumentParser
 
-
 def parse_args():
     parser = ArgumentParser(description="An auto downloader and uploader for TikTok videos.")
     parser.add_argument("user")
